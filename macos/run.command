@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# Navigáljunk a szkript saját mappájába, hogy a relatív utak működjenek
+
 cd "$(dirname "$0")"
 
-# Beállítjuk a helyi futtatási jogot, ha a letöltés elrontotta volna
 chmod +x run.command 2>/dev/null
 
 IMAGE="furted/pymarvel:latest"
@@ -39,7 +38,7 @@ if docker container inspect "$CONTAINER" >/dev/null 2>&1; then
 fi
 
 echo "[INFO] Launching pyMARVEL environment..."
-# FIX: Beletettük a --platform linux/amd64 flaget, így a legújabb M1/M2/M3/M4 Mac-eken is elindul!
+
 docker run -d --name "$CONTAINER" --platform linux/amd64 -p 8080:8080 "$IMAGE"
 
 echo "[INFO] Waiting for local server to initialize..."
