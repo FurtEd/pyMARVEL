@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Navigáljunk a szkript saját mappájába
+
 cd "$(dirname "$0")"
 
 IMAGE="furted/pymarvel:latest"
@@ -19,7 +19,7 @@ cleanup() {
 }
 trap cleanup SIGINT SIGTERM
 
-# Ellenőrizzük, hogy a Docker elérhető-e (sudo-val, mert Linuxon ez a biztos)
+
 if ! sudo docker info >/dev/null 2>&1; then
     echo "[ERROR] Docker is not running or cannot be accessed!"
     echo "Please ensure the Docker service is started (e.g., sudo systemctl start docker)."
@@ -43,7 +43,7 @@ echo "[INFO] Waiting for local server to initialize..."
 sleep 3
 
 echo "[INFO] Opening Web Interface..."
-# Megpróbáljuk megnyitni az alapértelmezett böngészőt
+
 xdg-open "http://localhost:8080" 2>/dev/null || echo "[INFO] Please open http://localhost:8080 manually."
 
 echo "==================================================="
